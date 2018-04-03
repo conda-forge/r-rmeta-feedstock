@@ -1,4 +1,4 @@
-{% set version = '2.16' %}
+{% set version = '3.0' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,18 +12,19 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/rmeta_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/rmeta/rmeta_{{ version }}.tar.gz
-  sha256: 9efb9e4f1847b59d9cbc46c793c528cf1b79d961ab1e6636daad81390b0a76e8
+  sha256: b9f9d405935cffcd7a5697ff13b033f9725de45f4dc7b059fd68a7536eb76b6e
 
 build:
   number: 0
+  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
-  skip: True  # [win32]
 
 requirements:
   build:
     - r-base
+
   run:
     - r-base
 
@@ -37,10 +38,10 @@ about:
   license: GPL-2
   summary: Functions for simple fixed and random effects meta-analysis for two-sample comparisons
     and cumulative meta-analyses. Draws standard summary plots, funnel plots, and computes
-    summaries and tests for association and heterogeneity
+    summaries and tests for association and heterogeneity.
   license_family: GPL2
   license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-2'  # [win] 
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-2'  # [win]
 
 extra:
   recipe-maintainers:
