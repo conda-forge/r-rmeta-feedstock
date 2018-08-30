@@ -1,5 +1,4 @@
 {% set version = '3.0' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,12 +9,13 @@ package:
 source:
   fn: rmeta_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/rmeta_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/rmeta/rmeta_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/rmeta_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rmeta/rmeta_{{ version }}.tar.gz
   sha256: b9f9d405935cffcd7a5697ff13b033f9725de45f4dc7b059fd68a7536eb76b6e
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -23,14 +23,15 @@ build:
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
-
   run:
     - r-base
 
 test:
   commands:
-    - $R -e "library('rmeta')"  # [not win]
+    - $R -e "library('rmeta')"           # [not win]
     - "\"%R%\" -e \"library('rmeta')\""  # [win]
 
 about:
@@ -45,8 +46,8 @@ about:
 
 extra:
   recipe-maintainers:
-    - cbrueffer
     - johanneskoester
     - bgruening
     - daler
     - jdblischak
+    - cbrueffer
