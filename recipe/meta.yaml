@@ -14,9 +14,9 @@ source:
   sha256: b9f9d405935cffcd7a5697ff13b033f9725de45f4dc7b059fd68a7536eb76b6e
 
 build:
+  noarch: generic
   merge_build_host: True  # [win]
-  number: 1
-  skip: true  # [win32]
+  number: 1001
   rpaths:
     - lib/R/lib/
     - lib/
@@ -41,8 +41,7 @@ about:
     and cumulative meta-analyses. Draws standard summary plots, funnel plots, and computes
     summaries and tests for association and heterogeneity.
   license_family: GPL2
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-2'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
