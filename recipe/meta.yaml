@@ -7,7 +7,6 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: rmeta_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/rmeta_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rmeta/rmeta_{{ version }}.tar.gz
@@ -24,6 +23,7 @@ build:
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
   run:
@@ -36,12 +36,13 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=rmeta
-  license: GPL-2
+  license: GPL-2.0-only
   summary: Functions for simple fixed and random effects meta-analysis for two-sample comparisons
     and cumulative meta-analyses. Draws standard summary plots, funnel plots, and computes
     summaries and tests for association and heterogeneity.
   license_family: GPL2
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
