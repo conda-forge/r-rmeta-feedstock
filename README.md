@@ -1,11 +1,11 @@
-About r-rmeta
-=============
+About r-rmeta-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-rmeta-feedstock/blob/main/LICENSE.txt)
 
 Home: https://CRAN.R-project.org/package=rmeta
 
 Package license: GPL-2.0-only
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-rmeta-feedstock/blob/main/LICENSE.txt)
 
 Summary: Functions for simple fixed and random effects meta-analysis for two-sample comparisons and cumulative meta-analyses. Draws standard summary plots, funnel plots, and computes summaries and tests for association and heterogeneity.
 
